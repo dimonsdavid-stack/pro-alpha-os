@@ -1,0 +1,4 @@
+import {NextResponse} from 'next/server';
+import {currentCustomer} from '@/lib/security';
+import {db} from '@/lib/db';
+export async function GET(){const customer=await currentCustomer();if(!customer)return new Response(null,{status:401});const d=(await db().query('SELECT * FROM desks WHERE customer_id=$1',[customer.id])).rows[0];if(!d)return new Response(null,{status:404});const rows=await Promise.all(['workflows','evidence','obligations','audit_events'].map(table=>db().query(`SELECT * FROM ${table} WHERE desk_id=$1`,[d.id])));return NextResponse.json({reference:d.id,exportedAt:new Date().toISOString(),workflows:rows[0].rows,evidence:rows[1].rows,obligations:rows[2].rows,history:rows[3].rows},{headers:{'Cache-Control':'no-store','Content-Disposition':'attachment; filename="pro-alpha-operating-record.json"'}});}

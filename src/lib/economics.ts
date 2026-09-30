@@ -1,0 +1,2 @@
+export const costFields=['payment_fee_cents','financing_mdr_cents','provider_expense_cents','software_cost_cents','support_cost_cents','refund_cents','partner_payout_cents','cac_cents'] as const;
+export function contribution(row:Record<string,number|null>){if(costFields.some(k=>row[k]===null||row[k]===undefined))return {contributionCents:null,incomplete:costFields.filter(k=>row[k]===null||row[k]===undefined)};return {contributionCents:row.gross_cents!-row.discount_cents!-costFields.reduce((s,k)=>s+row[k]!,0),incomplete:[]};}

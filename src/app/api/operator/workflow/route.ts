@@ -1,0 +1,15 @@
+import {NextResponse} from 'next/server';
+import {randomUUID,timingSafeEqual} from 'node:crypto';
+import {z} from 'zod';
+import {transaction} from '@/lib/db';
+import {validateTransition,states,modules,type WorkflowState} from '@/lib/workflows';
+import {commercial} from '@/lib/config';
+import {recordEvent} from '@/lib/analytics';
+export async function POST(req:Request){const token=process.env.OPERATOR_API_TOKEN;const supplied=req.headers.get('authorization')?.replace(/^Bearer /,'')||'';if(!token||Buffer.byteLength(supplied)!==Buffer.byteLength(token)||!timingSafeEqual(Buffer.from(supplied),Buffer.from(token)))return new Response(null,{status:401});
+ const b=z.object({workflowId:z.string().uuid(),expectedVersion:z.number().int().min(1),state:z.enum(states),source:z.string().min(5).max(500),evidenceKind:z.enum(['facts','authorization','external_receipt','specialist_record']),authority:z.string().uuid().optional()}).safeParse(await req.json().catch(()=>null));if(!b.success)return new Response(null,{status:400});
+ try{const r=await transaction(async c=>{const w=(await c.query('SELECT * FROM workflows WHERE id=$1 FOR UPDATE',[b.data.workflowId])).rows[0];if(!w||w.version!==b.data.expectedVersion)throw new Error('Version conflict');validateTransition(w.state as WorkflowState,b.data.state,'operator',b.data.authority||(['external_receipt','specialist_record'].includes(b.data.evidenceKind)?b.data.source:undefined));
+ const def=modules.find(m=>m.id===w.module)!;
+ if(['READY','CUSTOMER_AUTHORIZATION_REQUIRED','SUBMISSION_PENDING'].includes(b.data.state)){for(const dep of def.depends){const d=(await c.query('SELECT state FROM workflows WHERE desk_id=$1 AND module=$2',[w.desk_id,dep])).rows[0];if(!['READY','ACCEPTED','COMPLETE'].includes(d?.state))throw new Error('Dependency unresolved');}}
+ if(b.data.state==='SUBMISSION_PENDING'){if(!b.data.authority || !(await c.query('SELECT id FROM authorizations WHERE id=$1 AND workflow_id=$2 AND workflow_version=$3',[b.data.authority,w.id,w.version])).rowCount)throw new Error('Customer authorization missing');}
+ if(['FILED','ACCEPTED'].includes(b.data.state)&&b.data.evidenceKind!=='external_receipt')throw new Error('External receipt required');
+ await c.query('UPDATE workflows SET state=$2,version=version+1,source=$3 WHERE id=$1',[w.id,b.data.state,b.data.source]);await c.query('INSERT INTO audit_events(id,desk_id,actor,kind,previous_state,new_state,source,rule_version) VALUES($1,$2,$3,$4,$5,$6,$7,$8)',[randomUUID(),w.desk_id,'operator','WORKFLOW_TRANSITION',w.state,b.data.state,b.data.source,commercial.version]);const customer=(await c.query('SELECT customer_id FROM desks WHERE id=$1',[w.desk_id])).rows[0];return {state:b.data.state,customer:customer.customer_id};});if(r.state==='COMPLETE')await recordEvent(`complete:${b.data.workflowId}:${b.data.expectedVersion}`,'workflow_completed',r.customer);return NextResponse.json({state:r.state});}catch{return NextResponse.json({error:'Transition rejected: dependency, version, authority or evidence requirements not satisfied.'},{status:409});}}

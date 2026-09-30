@@ -1,0 +1,5 @@
+import {NextResponse} from 'next/server';
+import {randomUUID} from 'node:crypto';
+import {transaction} from '@/lib/db';
+import {hash,secret,sameOrigin,cookieOptions} from '@/lib/security';
+export async function POST(req:Request){if(!sameOrigin(req) || !process.env.DATABASE_URL)return new Response(null,{status:403});const b=await req.json().catch(()=>null);if(typeof b?.token!=='string'||! /^[a-f0-9]{64}$/.test(b.token))return NextResponse.json({error:'Invalid link'},{status:400});const token=secret();const ok=await transaction(async c=>{const r=await c.query('UPDATE login_tokens SET used_at=now() WHERE token_hash=$1 AND expires_at>now() AND used_at IS NULL RETURNING customer_id',[hash(b.token)]);if(!r.rowCount)return false;await c.query('INSERT INTO sessions(id,customer_id,token_hash,expires_at) VALUES($1,$2,$3,now()+interval \'7 days\')',[randomUUID(),r.rows[0].customer_id,hash(token)]);return true;});if(!ok)return NextResponse.json({error:'Link expired or already used. Request a new link.'},{status:401});const response=NextResponse.json({url:'/desk'});response.cookies.set('pa_session',token,cookieOptions());return response;}
