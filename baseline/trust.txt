@@ -1,0 +1,102 @@
+Trust Center | Pro Alpha Systems
+Pro Alpha Systems · Trading Business Infrastructure
+Human-reviewed filing gates
+A
+Pro Alpha Systems
+Pro Alpha OS · Trader Desk
+System
+Process
+Pricing
+Sample Desk
+Trust
+Check desk fit
+Pro Alpha Systems · Trust Center
+Controls implemented today. Assurance claims only when earned.
+Pro Alpha OS coordinates sensitive business implementation. This page separates verified product controls from external assurance work that is not presently claimed.
+Control posture
+Truth labeled
+Last product and regulatory-logic review: September 3, 2026.
+Verified in the product
+Governed workflow controls—not security adjectives.
+Hosted payment boundary
+Payment-card credentials stay on Stripe-hosted checkout. The application receives only the resulting payment state and authorized implementation data.
+Purpose-limited intake
+Pre-qualification does not request SSNs, tax IDs, bank credentials, exchange passwords, card numbers, or private keys.
+Irreversible-action gates
+Submission is blocked behind completeness, authority, duplicate, cost-ceiling, and explicit human-approval checks.
+Reference-linked reconciliation
+Payment, intake, workflow state, external status, and accepted records remain attached to one implementation reference.
+Provider isolation
+Filing-provider credentials, tool names, and internal status labels remain server-side and are absent from customer-facing static assets.
+No autonomous professional conclusion
+Automation organizes facts, evidence, drafts, and state transitions; applicable professionals control facts-specific regulated decisions.
+Corporate and professional accountability
+Responsibility must be legible.
+Company-facing identity
+Pro Alpha Systems
+Customer product
+Pro Alpha OS · Trader Desk
+Category
+Trading Business Infrastructure
+Checkout merchant
+Crestside Consultants LLC
+Payment processor
+Stripe-hosted checkout
+Professional decisions
+Applicable reviewer identity and authority must be recorded on the accepted file; this site implies no unnamed credential.
+Public leadership roster
+Not currently published; no founder or professional identity is fabricated here.
+Data handling
+Minimum necessary data by stage.
+Qualification:
+trading profile, residence, existing-entity/election flags, contact details, and routing outcome stored in the current browser session.
+Checkout:
+payment credentials and checkout identity processed by Stripe under its own terms.
+Paid implementation:
+approved entity names/jurisdictions, ownership flags, principal-office record, authorization, filing state, and purpose-limited workflow evidence.
+External execution:
+only information required for the authorized filing, registered-agent, document, payment, or professional-review action.
+Subprocessor categories
+Operational need defines access.
+Cloud hosting and workflow
+Hosted payment processing
+Filing and registered-agent operations
+Document generation and storage
+Customer communications
+Professional review and advisory
+Government records may publish registered-agent, organizer, officer, manager, address, or other jurisdiction-required information. Provider isolation in the application is not a promise of anonymity from public records or lawful KYC.
+Regulatory logic provenance
+Sources and rule versions belong in the system.
+Regulatory content can change. The operating file should record which source and rule version controlled each generated obligation or suppressed task.
+IRS · trader facts
+Trader status remains facts-and-circumstances based.
+Holding periods, trade frequency and amount, livelihood intent, time devoted, substantiality, continuity, and regularity matter; this intake does not determine the result.
+IRS Topic 429
+FinCEN · BOI logic
+Domestic U.S. companies are exempt from federal BOI reporting under the August 2026 final rule.
+The product maintains an Ownership & KYC Record for banks, brokers, exchanges, counterparties, and operating consistency; it does not market that record as a domestic federal BOI filing obligation.
+FinCEN BOI update
+State obligations
+Formation creates continuing state obligations.
+For example, active Wyoming entities have annual-report requirements tied to the anniversary month. Jurisdiction is cleared downstream; obligations follow the accepted state.
+Wyoming annual reports
+External assurance status
+Not presently claimed.
+These items require evidence outside the current product code and deployment. They remain explicit diligence work—not marketing language.
+SOC 2 Type I or Type II attestation
+Independent penetration-test report
+Published cyber or E&O insurance attestation
+Public uptime/status history
+Published formal retention/deletion schedule
+Public named security or incident-response contact
+Evidence before assurance
+Inspect the control model in a fictitious desk.
+Open Sample Desk
+Pro Alpha Systems
+Pro Alpha OS is the Trading Business Infrastructure product for facts-based architecture qualification, controlled implementation, filing reconciliation, and continuous operating records. Pro Alpha Systems is not a law firm, CPA firm, broker-dealer, or investment adviser. Entity selection, Trader Tax Status, Section 475, payroll, benefits, depreciation, and tax treatment remain facts-and-circumstances determinations. Applicable professionals control regulated decisions. No tax result, status, savings amount, or account approval is guaranteed.
+Public-record privacy is not anonymity from banks, exchanges, regulators, or the IRS.
+Sample Desk
+Trust Center
+Legal
+Payments at checkout are processed by merchant of record Crestside Consultants LLC.
+© 2026 Pro Alpha Systems. Pro Alpha OS is the product.

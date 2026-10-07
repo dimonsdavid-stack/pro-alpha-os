@@ -1,0 +1,151 @@
+[
+  {
+    "name": "desktop",
+    "route": "/",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "route": "/sample-desk",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "route": "/checkout",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "route": "/trust",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "route": "/legal",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "route": "/desk",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "redirect": true
+  },
+  {
+    "name": "tablet",
+    "route": "/",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "tablet",
+    "route": "/sample-desk",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "tablet",
+    "route": "/checkout",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "tablet",
+    "route": "/trust",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "tablet",
+    "route": "/legal",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "tablet",
+    "route": "/desk",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "tablet",
+    "redirect": true
+  },
+  {
+    "name": "mobile",
+    "route": "/",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/sample-desk",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/checkout",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/trust",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/legal",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "route": "/desk",
+    "overflow": false,
+    "violations": [],
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "redirect": true
+  },
+  {
+    "route": "/api/desk",
+    "unauthorized": true
+  },
+  {
+    "route": "/api/export",
+    "unauthorized": true
+  },
+  {
+    "forgedSuccessDoesNotActivate": true
+  }
+]

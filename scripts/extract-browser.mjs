@@ -1,0 +1,2 @@
+import {brotliDecompressSync} from 'node:zlib';import {readFileSync,writeFileSync,chmodSync} from 'node:fs';import {Readable} from 'node:stream';import {pipeline} from 'node:stream/promises';import {extract} from 'tar-fs';
+const path='node_modules/@sparticuz/chromium/bin/';writeFileSync('/tmp/chromium',brotliDecompressSync(readFileSync(path+'chromium.br')));chmodSync('/tmp/chromium',0o755);for(const n of ['fonts','swiftshader'])await pipeline(Readable.from(brotliDecompressSync(readFileSync(path+n+'.tar.br'))),extract(n==='fonts'?'/tmp/fonts':'/tmp',{chown:false}));
